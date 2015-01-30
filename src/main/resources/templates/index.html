@@ -3,20 +3,36 @@
 <head>
     <title>iCoachTennis</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0-beta.2/angular.min.js"></script>
+
 </head>
-<body ng-app="icoachtennis">
+<body>
 <p th:text="'Hello, ' + ${name} + '!'" />
 
-<div ng-controller="HelloController" >
-    <h2>Welcome {{helloTo.title}} to the world of icoachtennis!</h2>
+<p>Roster</p>
+<!--<ol>-->
+    <!--<li ng-repeat="player in players">-->
+        <!--{{ 'Name: ' + player.fullName() + ', Grade: ' + player.grade }}-->
+    <!--</li>-->
+<!--</ol>-->
+<div ng-app="" ng-controller="playerController">
+Enter first name: <input type="text" ng-model="player.firstName"/><br/><br/>
+Enter last name: <input type="text" ng-model="player.lastName"/><br/>
+
+{{ player.fullName() }}
 </div>
 <script>
-    angular.module("icoachtennis", [])
-            .controller("HelloController", function($scope) {
-                $scope.helloTo = {};
-                $scope.helloTo.title = "AngularJS";
-            });
+    function playerController($scope) {
+        $scope.player = {
+            firstName: "Norbert",
+            lastName: "Kuchenmeister",
+            fullName: function() {
+                var playerObject;
+                playerObject = $scope.player;
+                return playerObject.firstName + " " + playerObject.lastName;
+            }
+        };
+    }
 </script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0-beta.2/angular.js"></script>
 </body>
 </html>
